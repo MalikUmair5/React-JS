@@ -1,0 +1,28 @@
+.todoItem {
+  text-align: center;
+  margin: 10px;
+}
+
+.todoItem .col-6 {
+  text-align: left;
+}
+.todoItem .col-4 {
+  text-align: left;
+}
+
+.addTodo input {
+  width: 100%;
+  padding: 4px;
+}
+
+.appHeading {
+  text-align: center;
+  font-weight: bolder;
+  color: red;
+  margin: 30px 0px;
+}
+
+button {
+  min-width: 80px;
+  text-align: center;
+}
