@@ -1,9 +1,16 @@
-function TodoItem1(): JSX.Element {
+
+
+interface TodoItemProps{
+  todo: string,
+  date: string
+}
+
+function TodoItem({todo, date}: TodoItemProps): JSX.Element {
   return (
     <div className="container todoItem">
       <div className="row">
-        <div className="col-6">Buy Milk</div>
-        <div className="col-4">4/10/2023</div>
+        <div className="col-6">{todo}</div>
+        <div className="col-4">{date}</div>
         <div className="col-2">
           <button type="button" className="btn btn-danger">
             Add
@@ -14,4 +21,4 @@ function TodoItem1(): JSX.Element {
   );
 }
 
-export default TodoItem1;
+export default TodoItem;
