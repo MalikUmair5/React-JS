@@ -1,0 +1,10 @@
+.main{
+    text-align: center;
+    margin: 20px;
+}
+.main ul {
+    text-align: left;
+    max-width: 400px;
+    margin: 0 auto;
+    margin-top: 20px;
+}
