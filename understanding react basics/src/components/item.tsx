@@ -1,15 +1,13 @@
+import styles from "./item.module.css"
 
 interface itemProps {
-    item: string;
-
+  item: string;
 }
 
 function item({ item }: itemProps): JSX.Element {
   return (
     <>
-      <li  className="list-group-item">
-        {item}
-      </li>{" "}
+      <li className={` ${styles.myItem} list-group-item`}>{item}</li>{" "}
     </>
   );
 }
