@@ -12,9 +12,9 @@ interface DisplayTodosProps {
 function DisplayTodos({ todos }: DisplayTodosProps): JSX.Element {
   return (
     <>
-      {todos.map((item, index) => {
-       return <TodoItem key={index} todo={item.todo} date={item.date}></TodoItem>;
-      })}
+      {todos.map((item, index) => (
+        <TodoItem key={index} todo={item.todo} date={item.date}></TodoItem>
+      ))}
     </>
   );
 }
