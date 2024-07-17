@@ -4,3 +4,9 @@
   font-size: large;
   font-weight: bold;
 }
+
+
+.buybtn{
+  float: right;
+  width: 100px;
+}
