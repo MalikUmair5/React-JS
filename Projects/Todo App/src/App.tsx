@@ -24,6 +24,10 @@ function App(): JSX.Element {
     {
       todo: "Sleep",
       date: "15/6/2024"
+    },
+    {
+      todo: "wake up",
+      date: "15/6/2024"
     }
   ]
   
