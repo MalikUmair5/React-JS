@@ -1,14 +1,15 @@
+import { KeyboardEvent } from "react";
 import styles from "./ItemInput.module.css";
 
 interface ItemInputProps {
-  handleChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  handleChange: (e: KeyboardEvent<HTMLInputElement>) => void;
 }
 
 const ItemInput = ({ handleChange }: ItemInputProps): JSX.Element => {
   return (
     <>
       <input
-        onChange={handleChange}
+        onKeyDown={handleChange}
         className={`${styles.myInput}`}
         type="text"
       />

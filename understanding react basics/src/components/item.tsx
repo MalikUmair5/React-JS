@@ -1,8 +1,9 @@
 import styles from "./item.module.css";
+import { MouseEvent } from "react";
 
 interface itemProps {
   item: string;
-  handlebuybtn: (itemName: string) => void;
+  handlebuybtn: (itemName: string, e: MouseEvent<HTMLButtonElement>) => void;
 }
 
 function item({ item, handlebuybtn }: itemProps): JSX.Element {
@@ -11,7 +12,7 @@ function item({ item, handlebuybtn }: itemProps): JSX.Element {
       <li className={` ${styles.myItem} list-group-item`}>
         {item}
         <button
-          onClick={() => handlebuybtn(item)}
+          onClick={(e) => handlebuybtn(item, e)}
           className={`${styles.buybtn} btn btn-info`}
         >
           Buy
