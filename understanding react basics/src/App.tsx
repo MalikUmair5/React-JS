@@ -7,19 +7,25 @@ import { useState } from "react";
 import { KeyboardEvent } from "react";
 
 function App() {
-  // let healtyfoods = [];
   let healtyfoods: string[] = [];
-
   let [foodItems, setFoodItems] = useState(healtyfoods);
+  let [ImptyInputError, setImptyInputError] = useState(
+    "Write name of Healty food and press Enter to add"
+  );
 
   let handleChange = (e: KeyboardEvent<HTMLInputElement>) => {
     const target = e.target as HTMLInputElement;
-    if(e.code === "Enter"){
-      console.log(target.value)
-      let updatedFoods = [...foodItems, target.value];
-      setFoodItems(updatedFoods);
-      console.log(foodItems)
-      target.value = "";
+    if (e.key === "Enter") {
+      console.log(target.value);
+      if (target.value === "") {
+        setImptyInputError("Please enter a value");
+      } else {
+        let updatedFoods = [...foodItems, target.value];
+        setFoodItems(updatedFoods);
+        console.log(foodItems);
+        target.value = "";
+        setImptyInputError("Write name of Healty food and press Enter to add");
+      }
     }
   };
 
@@ -28,7 +34,6 @@ function App() {
     let target = e.target as HTMLButtonElement;
     let btnParent = target.parentElement as HTMLLIElement;
     btnParent.style.backgroundColor = "green";
-   
   };
 
   return (
@@ -37,6 +42,14 @@ function App() {
         <Container>
           <h1 className="mainheading">Healty Foods</h1>
           <ItemInput handleChange={handleChange} />
+          <p
+            style={{
+              color:
+                ImptyInputError == "Please enter a value" ? "red" : "black",
+            }}
+          >
+            {ImptyInputError}
+          </p>
           <ErrorMessage foodItems={foodItems} />
           <FoodItems handlebuybtn={handlebuybtn} foodItems={foodItems} />
         </Container>
