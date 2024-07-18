@@ -8,13 +8,17 @@ function App() {
   // let healtyfoods = [];
   let healtyfoods = ["daal", "roti", "salad", "sabzi", "doodh", "fruits"];
 
+  let handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    console.log(`You have typed ${e.target.value}`);
+  };
+
   return (
     <>
       <div className="main">
         <Container>
           <h1 className="mainheading">Healty Foods</h1>
           <ErrorMessage foodItems={healtyfoods} />
-          <ItemInput />
+          <ItemInput handleChange={handleChange} />
           <FoodItems foodItems={healtyfoods} />
         </Container>
         <Container>

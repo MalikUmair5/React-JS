@@ -2,19 +2,16 @@ import styles from "./item.module.css";
 
 interface itemProps {
   item: string;
+  handlebuybtn: (itemName: string) => void;
 }
 
-function item({ item }: itemProps): JSX.Element {
-  let handlebuybtn = () => {
-    console.log(`You have bought ${item}`);
-  };
-
+function item({ item, handlebuybtn }: itemProps): JSX.Element {
   return (
     <>
       <li className={` ${styles.myItem} list-group-item`}>
         {item}
         <button
-          onClick={handlebuybtn}
+          onClick={() => handlebuybtn(item)}
           className={`${styles.buybtn} btn btn-info`}
         >
           Buy

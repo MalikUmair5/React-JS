@@ -5,13 +5,15 @@ interface FoodItemsProps {
 }
 
 function FoodItems({ foodItems }: FoodItemsProps): JSX.Element {
-
+  let handlebuybtn = (itemName: string) => {
+    console.log(`You have bought ${itemName}`);
+  };
   return (
     <>
       {" "}
       <ul className="list-group">
         {foodItems.map((food, index) => {
-          return <Item key={index} item={food}></Item>;
+          return <Item handlebuybtn={handlebuybtn} key={index} item={food}></Item>;
         })}
       </ul>
     </>
