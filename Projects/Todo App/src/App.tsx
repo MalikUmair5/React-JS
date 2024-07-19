@@ -4,7 +4,7 @@ import AppHeading from "./Components/AppHeading";
 import "./App.css";
 import DisplayTodos from "./Components/Displaytodos";
 import { useState } from "react";
-import { SyntheticEvent } from "react";
+import WelcomeMessage from "./Components/WelcomeMessage";
 
 
 function App(): JSX.Element {
@@ -15,18 +15,13 @@ function App(): JSX.Element {
     date: "15/6/2024"
   },]);
   
-  const handleAddTodo = (todo: string, date: string, e:SyntheticEvent<HTMLElement>) => {
+  const handleAddTodo = (todo: string, date: string) => {
     if (todo === "" || date === "") {
       alert("Please enter a valid todo and date");
       return;
     }
     else {
       setTodos([...todos, {todo: todo, date: date}]);
-      let addBtn = e.target as HTMLButtonElement;
-      let dateInput = addBtn.parentElement?.previousSibling?.firstChild as HTMLInputElement;
-      let todoInput = dateInput.parentElement?.previousSibling?.firstChild as HTMLInputElement;
-      dateInput.value = "";
-      todoInput.value = "";
     }
   }
 
@@ -41,9 +36,8 @@ function App(): JSX.Element {
     <center>
       <AppHeading />
       <AddTodo handleAddTodo={handleAddTodo}/>
+      {todos.length === 0 && <WelcomeMessage /> }
       <DisplayTodos deleteTodo={handleDeleteTodo} todos={todos}></DisplayTodos>
-      
-
     </center>
   );
 }

@@ -1,13 +1,25 @@
-import { ReactEventHandler, SyntheticEvent } from "react";
+import { useState } from "react";
 import styles from "./AddTodo.module.css";
+import { FaPlusCircle } from "react-icons/fa";
+
 
 interface AddTodoProps{
-    handleAddTodo: (todo: string, date: string, e: SyntheticEvent<HTMLElement>) => void;
+    handleAddTodo: (todo: string, date: string) => void;
 }
 
 function AddTodo({handleAddTodo}: AddTodoProps): JSX.Element {
-  let todoValue = "";
-  let todoDate = "";
+
+  let [todoValue, setTodoValue] = useState("");
+  let [todoDate, setTodoDate] = useState("");
+
+  const handleClick = () => {;
+
+    handleAddTodo(todoValue, todoDate);
+
+    setTodoValue("");
+    setTodoDate("");
+  }
+
     
 
 
@@ -16,26 +28,25 @@ function AddTodo({handleAddTodo}: AddTodoProps): JSX.Element {
       <div className="row">
         <div className="col-6">
           <input
-            onChange={(e) => {
-              todoValue = e.target.value;
-            }}
             className={styles.todoInput}
             type="text"
             placeholder="Enter Todo here"
+            value={todoValue}
+            onChange={(e) => setTodoValue(e.target.value)}
           />
         </div>
         <div className="col-4">
           <input
-            onChange={(e) => {
-              todoDate = e.target.value;
-            }}
             className={styles.todoInput}
             type="Date"
+            onChange={(e) => setTodoDate(e.target.value)}
+            value={todoDate}
           />
         </div>
         <div className="col-2">
-          <button onClick={(e)=>handleAddTodo(todoValue, todoDate, e)} type="button" className="btn btn-success">
-            Add
+          <button onClick={handleClick} type="button" className="btn btn-success">
+          <FaPlusCircle />
+
           </button>
         </div>
       </div>
