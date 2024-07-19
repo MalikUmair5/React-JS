@@ -3,10 +3,13 @@ import styles from "./Button.module.css"
 
 interface buttonProps{
     name: string;
+    handleBtnClick : (name: string) => void;
 }
 
-function Button({name}: buttonProps): JSX.Element{
-return <button className={styles.btn}>{name}</button>
+function Button({name, handleBtnClick}: buttonProps): JSX.Element{
+return <button 
+onClick={() => handleBtnClick(name)}
+className={styles.btn}>{name}</button>
 }
 
 

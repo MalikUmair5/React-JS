@@ -1,10 +1,15 @@
 import styles from "./Display.module.css";
 
-function Display(): JSX.Element {
+interface DisplayProps {
+  display: string[];
+
+}
+
+function Display({display}:DisplayProps): JSX.Element {
   return (
     <>
       <div className={styles.inputDiv}>
-        <input disabled type="text" className={styles.display} />
+        <input value={display.join('')} disabled type="text" className={styles.display} />
       </div>
     </>
   );
