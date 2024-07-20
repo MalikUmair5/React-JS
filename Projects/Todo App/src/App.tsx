@@ -15,7 +15,7 @@ function App(): JSX.Element {
   ]);
 
   const handleAddTodo = (todo: string, date: string) => {
-    setTodos([...todos, { todo: todo, date: date }]);
+    setTodos((prevValue) => [...prevValue, { todo: todo, date: date }]);
   };
 
   const handleDeleteTodo = (index: number) => {
