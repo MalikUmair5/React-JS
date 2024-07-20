@@ -1,4 +1,4 @@
-import { useState, FormEvent } from "react";
+import { FormEvent, useRef } from "react";
 import styles from "./AddTodo.module.css";
 import { FaPlusCircle } from "react-icons/fa";
 
@@ -7,15 +7,26 @@ interface AddTodoProps {
 }
 
 function AddTodo({ handleAddTodo }: AddTodoProps): JSX.Element {
-  let [todoValue, setTodoValue] = useState("");
-  let [todoDate, setTodoDate] = useState("");
+
+  let todoValElement = useRef<HTMLInputElement>(null);
+  let todoDateElement = useRef<HTMLInputElement>(null);
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    let todoValue = todoValElement.current?.value;
+    let todoDate = todoDateElement.current?.value;
 
-    handleAddTodo(todoValue, todoDate);
-    setTodoValue("");
-    setTodoDate("");
+    if(!todoValue || !todoDate){
+      alert("Please enter a valid todo and date");
+      return;
+    }
+
+    else{
+      handleAddTodo(todoValue, todoDate);
+      todoValElement.current!.value = "";
+      todoDateElement.current!.value = "";
+    }
+
   };
 
   return (
@@ -25,18 +36,16 @@ function AddTodo({ handleAddTodo }: AddTodoProps): JSX.Element {
           <div className="col-6">
             <input
               className={styles.todoInput}
+              ref={todoValElement}
               type="text"
               placeholder="Enter Todo here"
-              value={todoValue}
-              onChange={(e) => setTodoValue(e.target.value)}
             />
           </div>
           <div className="col-4">
             <input
+            ref={todoDateElement}
               className={styles.todoInput}
               type="Date"
-              onChange={(e) => setTodoDate(e.target.value)}
-              value={todoDate}
             />
           </div>
           <div className="col-2">
