@@ -20,7 +20,8 @@ function App() {
       if (target.value === "") {
         setImptyInputError("Please enter a value");
       } else {
-        let updatedFoods = [...foodItems, target.value];
+        let upperCasedvalInput = target.value.slice(0, 1).toUpperCase() + target.value.slice(1);
+        let updatedFoods = [...foodItems, upperCasedvalInput];
         setFoodItems(updatedFoods);
         console.log(foodItems);
         target.value = "";

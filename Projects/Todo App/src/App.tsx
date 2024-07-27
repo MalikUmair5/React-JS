@@ -1,10 +1,10 @@
 import AddTodo from "./Components/AddTodo";
 import AppHeading from "./Components/AppHeading";
-
 import "./App.css";
 import DisplayTodos from "./Components/Displaytodos";
 import { useState } from "react";
 import WelcomeMessage from "./Components/WelcomeMessage";
+import { TodoItemsContext } from "./store/todo-item-store";
 
 function App(): JSX.Element {
   let [todos, setTodos] = useState([
@@ -14,23 +14,31 @@ function App(): JSX.Element {
     },
   ]);
 
-  const handleAddTodo = (todo: string, date: string) => {
+  const addNewItem = (todo: string, date: string) => {
     setTodos((prevValue) => [...prevValue, { todo: todo, date: date }]);
   };
 
-  const handleDeleteTodo = (index: number) => {
+  const deleteItem = (index: number) => {
     let updatedTodos = [...todos];
     updatedTodos.splice(index, 1);
     setTodos([...updatedTodos]);
   };
 
   return (
-    <center>
-      <AppHeading />
-      <AddTodo handleAddTodo={handleAddTodo} />
-      {todos.length === 0 && <WelcomeMessage />}
-      <DisplayTodos deleteTodo={handleDeleteTodo} todos={todos}></DisplayTodos>
-    </center>
+    <TodoItemsContext.Provider
+      value={{
+        todoItems: todos,
+        addNewItem: addNewItem,
+        deleteItem: deleteItem
+      }}
+    >
+      <center>
+        <AppHeading />
+        <AddTodo />
+        <WelcomeMessage />
+        <DisplayTodos />
+      </center>
+    </TodoItemsContext.Provider>
   );
 }
 

@@ -1,21 +1,19 @@
+import { useContext } from "react";
 import TodoItem from "./TodoItem";
+import { TodoItemsContext } from "../store/todo-item-store";
 
-interface TodoItem {
-  todo: string;
-  date: string;
-}
 
-interface DisplayTodosProps {
-  todos: TodoItem[];
-  deleteTodo: (index: number) => void;
-}
 
-function DisplayTodos({ todos, deleteTodo }: DisplayTodosProps): JSX.Element {
+function DisplayTodos(): JSX.Element {
+ 
+  const {todoItems, deleteItem} = useContext(TodoItemsContext)
+
+ 
   return (
     <>
-      {todos.map((item, index) => (
+      {todoItems.map((item, index) => (
         <TodoItem
-          deleteTodo={deleteTodo}
+          deleteTodo={deleteItem}
           index = {index}
           key={index}
           todo={item.todo}

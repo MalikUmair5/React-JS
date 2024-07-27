@@ -1,32 +1,26 @@
-import { FormEvent, useRef } from "react";
+import { FormEvent, useContext, useRef } from "react";
 import styles from "./AddTodo.module.css";
 import { FaPlusCircle } from "react-icons/fa";
+import { TodoItemsContext } from "../store/todo-item-store";
 
-interface AddTodoProps {
-  handleAddTodo: (todo: string, date: string) => void;
-}
-
-function AddTodo({ handleAddTodo }: AddTodoProps): JSX.Element {
-
+function AddTodo(): JSX.Element {
   let todoValElement = useRef<HTMLInputElement>(null);
   let todoDateElement = useRef<HTMLInputElement>(null);
+  const {addNewItem} = useContext(TodoItemsContext)
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     let todoValue = todoValElement.current?.value;
     let todoDate = todoDateElement.current?.value;
 
-    if(!todoValue || !todoDate){
+    if (!todoValue || !todoDate) {
       alert("Please enter a valid todo and date");
       return;
-    }
-
-    else{
-      handleAddTodo(todoValue, todoDate);
+    } else {
+      addNewItem(todoValue, todoDate);
       todoValElement.current!.value = "";
       todoDateElement.current!.value = "";
     }
-
   };
 
   return (
@@ -43,16 +37,14 @@ function AddTodo({ handleAddTodo }: AddTodoProps): JSX.Element {
           </div>
           <div className="col-4">
             <input
-            ref={todoDateElement}
+              ref={todoDateElement}
               className={styles.todoInput}
               type="Date"
+              placeholder="Enter Todo Date"
             />
           </div>
           <div className="col-2">
-            <button
-              type="submit"
-              className="btn btn-success"
-            >
+            <button type="submit" className="btn btn-success">
               <FaPlusCircle />
             </button>
           </div>
