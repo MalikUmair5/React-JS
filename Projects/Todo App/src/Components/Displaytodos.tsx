@@ -7,7 +7,6 @@ import { TodoItemsContext } from "../store/todo-item-store";
 function DisplayTodos(): JSX.Element {
  
   const {todoItems, deleteItem} = useContext(TodoItemsContext)
-
  
   return (
     <>
