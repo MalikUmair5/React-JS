@@ -16,8 +16,17 @@
 }
 
 .footer{
-    position: fixed;
-    width: 100%;
-    bottom: 0;
     margin-bottom: 0 !important;
+}
+
+.hashtag{
+    margin: 0px 3px
+}
+
+.bucket{
+    cursor: pointer;
+}
+
+.myCard{
+    margin-bottom: 15px;
 }

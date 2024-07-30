@@ -1,5 +1,11 @@
+import { Dispatch, SetStateAction } from "react";
 
-const SideBar = () => {
+interface SideBarProps {
+  setPage: Dispatch<SetStateAction<string>>;
+  page: string;
+}
+
+const SideBar = ({ setPage, page }: SideBarProps) => {
   return (
     <>
       <div
@@ -13,24 +19,35 @@ const SideBar = () => {
           <svg className="bi pe-none me-2" width={40} height={32}>
             <use xlinkHref="#bootstrap" />
           </svg>
-          <span className="fs-4">Sidebar</span>
+          <span className="fs-4">Social Media</span>
         </a>
         <hr />
         <ul className="nav nav-pills flex-column mb-auto">
-          <li className="nav-item">
-            <a href="#" className="nav-link active" aria-current="page">
+          <li className="nav-item" onClick={()=>setPage("Home")}>
+            <a
+              href="#"
+              className={`nav-link ${
+                page === "Home" ? "active" : "link-body-emphasis"
+              }`}
+              aria-current="page"
+            >
               <svg className="bi pe-none me-2" width={16} height={16}>
                 <use xlinkHref="#home" />
               </svg>
               Home
             </a>
           </li>
-          <li>
-            <a href="#" className="nav-link link-body-emphasis">
+          <li onClick={()=>setPage("Create Post")}>
+            <a
+              href="#"
+              className={`nav-link ${
+                page === "Create Post" ? "active" : "link-body-emphasis"
+              }`}
+            >
               <svg className="bi pe-none me-2" width={16} height={16}>
                 <use xlinkHref="#speedometer2" />
               </svg>
-              Dashboard
+              Create Post
             </a>
           </li>
           <li>
@@ -105,7 +122,5 @@ const SideBar = () => {
     </>
   );
 };
-
-
 
 export default SideBar;
