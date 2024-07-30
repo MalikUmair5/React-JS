@@ -1,0 +1,23 @@
+.container{
+}
+.main{
+    display: flex;
+    height: 100vh;
+}
+
+.main .left{
+    width: 20%;
+    background-color: #f0f0f0;
+    padding: 10px;
+}
+
+.sideBar {
+    height: 100% !important;
+}
+
+.footer{
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+    margin-bottom: 0 !important;
+}
